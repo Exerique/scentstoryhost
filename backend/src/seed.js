@@ -64,45 +64,45 @@ const seedDatabase = async () => {
       {
         order: 1,
         storyTitle: "The Awakening",
-        storyText: "You wake up in a place between dreams. What is the first thing you sense?",
+        storyText: "You step out of the shadows and into a clearing. What is the first thing that hits your senses?",
         options: [
-          { text: "The salty mist of an endless ocean.", vibeImpact: "A", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701675/a_zlowdr.png" },
-          { text: "The scent of rain on dry, cedar earth.", vibeImpact: "B", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701674/b_tdbpu4.png"  },
-          { text: "A floating garden of white jasmine.", vibeImpact: "C", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701674/c_guh97f.png"  },
-          { text: "The smoke of a distant, mysterious fire.", vibeImpact: "D", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701675/d_qj4dsm.png"  }
+          { text: "The sharp, cold spray of a crashing wave against salt-crusted rocks.", vibeImpact: "A", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701675/a_zlowdr.png" },
+          { text: "The scent of crushed pine needles under your boots and damp earth after a thunderstorm.", vibeImpact: "B", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701674/b_tdbpu4.png"  },
+          { text: "The golden warmth of sun-baked jasmine vines climbing an old stone wall.", vibeImpact: "C", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701674/c_guh97f.png"  },
+          { text: "The rich, intoxicating aroma of roasted coffee and old library books bound in leather.", vibeImpact: "D", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701675/d_qj4dsm.png"  }
         ]
       },
       {
         order: 2,
-        storyTitle: "The Journey",
-        storyText: "A path opens before you. Where does it lead?",
+        storyTitle: "The Artifact",
+        storyText: "On a pedestal in the center of the clearing sits an object. You feel compelled to pick it up. What is it?",
         options: [
-          { text: "Down to a hidden turquoise cove.", vibeImpact: "A", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701715/a_udvw8i.png"  },
-          { text: "Into a dense, ancient pine forest.", vibeImpact: "B", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701715/b_nin2jm.png"  },
-          { text: "Toward a sun-drenched silk palace.", vibeImpact: "C", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701715/c_ccsx0h.png"  },
-          { text: "Through a dark alley of neon and jazz.", vibeImpact: "D", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701715/d_max02z.png"  }
+          { text: "A polished piece of sea glass, cold and smooth to the touch.", vibeImpact: "A", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701715/a_udvw8i.png"  },
+          { text: "A heavy, hand-forged iron key that smells faintly of metallic rain.", vibeImpact: "B", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701715/b_nin2jm.png"  },
+          { text: "A delicate silk scarf that carries the faint, powdery sweetness of a lost era.", vibeImpact: "C", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701715/c_ccsx0h.png"  },
+          { text: "A wooden box carved from sandalwood, humming with the scent of incense and spice.", vibeImpact: "D", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701715/d_max02z.png"  }
         ]
       },
       {
         order: 3,
-        storyTitle: "The Encounter",
-        storyText: "You meet a stranger who offers you a gift. You choose...",
+        storyTitle: "The Atmosphere",
+        storyText: "The sky begins to change color. Which \"vibe\" makes you feel most at home?",
         options: [
-          { text: "A jar of sea glass and frozen spray.", vibeImpact: "A", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701771/a_vww7aw.png"  },
-          { text: "A rough-hewn iron key to the earth.", vibeImpact: "B", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701770/b_io0ny2.png" },
-          { text: "A single peach nectar flower.", vibeImpact: "C", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701771/c_wclm36.png"  },
-          { text: "A leather-bound book of secrets.", vibeImpact: "D", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701771/d_pxzvef.png"  }
+          { text: "The \"Blue Hour\"—crisp, minimalist, and full of infinite possibility.", vibeImpact: "A", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701771/a_vww7aw.png"  },
+          { text: "The \"Golden Hour\"—dappled sunlight, grounded, and quiet.", vibeImpact: "B", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701770/b_io0ny2.png" },
+          { text: "The \"Velvet Hour\"—mysterious, romantic, and deeply soft.", vibeImpact: "C", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701771/c_wclm36.png"  },
+          { text: "The \"Midnight Hour\"—bold, smoky, and sophisticated.", vibeImpact: "D", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701771/d_pxzvef.png"  }
         ]
       },
       {
         order: 4,
-        storyTitle: "The Destination",
-        storyText: "The sun is setting. What color is the sky?",
+        storyTitle: "The Exit",
+        storyText: "To leave the dream, you must drink from one of four vials. Which one do you choose?",
         options: [
-          { text: "The Blue Hour: Deep and refreshing.", vibeImpact: "A", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701817/a_sgswtb.png"  },
-          { text: "The Golden Hour: Warm and grounded.", vibeImpact: "B", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701817/b_rj0lte.png"  },
-          { text: "The Velvet Hour: Soft and ethereal.", vibeImpact: "C", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701818/c_wer3bd.png"  },
-          { text: "Midnight: Dark and intoxicating.", vibeImpact: "D", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701819/d_k4ed1a.png"  }
+          { text: "A sparkling tonic of iced lime and mint.", vibeImpact: "A", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775750912/a_kelvxs.png"  },
+          { text: "A cedar-infused tea brewed over a campfire.", vibeImpact: "B", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701817/b_rj0lte.png"  },
+          { text: "A thick nectar of honeyed peaches and rose petals.", vibeImpact: "C", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775750564/c_wkwus8.png"  },
+          { text: "A dark, spiced elixir of vanilla bean and black pepper.", vibeImpact: "D", imageUrl: "https://res.cloudinary.com/dfmyykbay/image/upload/q_auto/f_auto/v1775701819/d_k4ed1a.png"  }
         ]
       }
     ];
