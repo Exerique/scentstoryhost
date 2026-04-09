@@ -50,30 +50,27 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-// Indexes
-userSchema.index({ email: 1 });
-userSchema.index({ username: 1 });
 
-// Pre-save hook to hash password before saving to database
-userSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) {
-    return next();
-  }
+/**
+ * Pre-save hook to hash password
+ * Using modern async style (no 'next' parameter) to avoid TypeErrors
+ */
+userSchema.pre('save', async function () {
+  if (!this.isModified('password')) return;
 
   try {
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
-    next();
   } catch (error) {
-    next(error);
+    throw error; 
   }
 });
 
-// Method to verify password during login
+/**
+ * Method to verify password during login
+ */
 userSchema.methods.comparePassword = async function (candidatePassword) {
   return await bcrypt.compare(candidatePassword, this.password);
 };
 
-const User = mongoose.model('User', userSchema);
-
-module.exports = User;
+module.exports = mongoose.model('User', userSchema);

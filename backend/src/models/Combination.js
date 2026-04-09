@@ -4,18 +4,14 @@ const combinationSchema = new mongoose.Schema(
   {
     code: {
       type: String,
-      required: [true, 'Combination code is required'],
-      unique: true,
       trim: true,
       uppercase: true,
-      match: [
-        /^[A-Z]-[A-Z]-[A-Z]-[A-Z]$/,
-        'Please use valid combination format (e.g., A-A-A-B)'
-      ],
     },
+
     archetypeName: {
       type: String,
       required: [true, 'Archetype name is required'],
+      unique: true, 
       trim: true,
     },
     realFragranceMatch: {
@@ -34,24 +30,11 @@ const combinationSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: true, // Will add createdAt and updatedAt
+    timestamps: true,
   }
 );
 
-// Indexes
-combinationSchema.index({ code: 1 });
 
 const Combination = mongoose.model('Combination', combinationSchema);
 
 module.exports = Combination;
-
-/* 
- * Example Seed Data:
- * {
- *   code: "A-A-A-A",
- *   archetypeName: "The Pure Classic",
- *   realFragranceMatch: "Chanel No. 5",
- *   vibe: "Elegant, Timeless, Sophisticated",
- *   description: "A perfectly balanced classical scent..."
- * }
- */

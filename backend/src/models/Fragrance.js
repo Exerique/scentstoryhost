@@ -16,33 +16,26 @@ const fragranceSchema = new mongoose.Schema(
     },
     archetype: {
       type: String,
-      required: [true, 'Archetype is required'],
-      trim: true,
-      // Optional: Add enum if archetypes are fixed
-      // enum: ['Floral', 'Woody', 'Fresh', 'Oriental', ...], 
+      required: true
     },
-    combination: {
-      type: String,
-      required: [true, 'Combination pattern is required'],
-      trim: true,
-      uppercase: true,
-      // Regex validates typical patterns like A-A-A-A, A-A-B-B, etc.
-      match: [
-        /^[A-Z]-[A-Z]-[A-Z]-[A-Z]$/,
-        'Please use valid combination format (e.g., A-A-A-B)'
-      ]
+    tags: {
+      A: { type: Number, default: 0, min: 0, max: 10 }, // Aquatic Score
+      B: { type: Number, default: 0, min: 0, max: 10 }, // Earthy Score
+      C: { type: Number, default: 0, min: 0, max: 10 }, // Ethereal Score
+      D: { type: Number, default: 0, min: 0, max: 10 }  // Noir Score
     },
     photoUrl: {
       type: String,
-      // Optional regex to validate URL structure if desired
       default: '',
     },
     category: {
       type: String,
+      required: true,
+      enum: ['Aquatic', 'Earthy', 'Ethereal', 'Noir', 'Rare Blend'], 
       trim: true,
     },
     notes: {
-      type: [String], // Array of note strings
+      type: [String], 
       default: [],
     },
     createdBy: {
