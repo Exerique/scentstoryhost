@@ -17,11 +17,34 @@ const setupSwagger = require('./swagger');
 
 const app = express();
 
-// CORS
 const corsOptions = {
-  origin: [/localhost:5173$/, /admin\.localhost:5173$/], 
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+
+    const allowedPatterns = [
+      /^http:\/\/localhost:5001$/,
+      /^http:\/\/admin\.localhost:5001$/,
+      /^http:\/\/127\.0\.0\.1:5001$/, 
+      /^http:\/\/admin\.127\.0\.0\.1:5001$/, 
+      /^http:\/\/localhost:5173$/,
+      /^http:\/\/admin\.localhost:5173$/,
+      /^http:\/\/127\.0\.0\.1:5173$/,
+      /^http:\/\/admin\.127\.0\.0\.1:5173$/
+    ];
+
+    const isAllowed = allowedPatterns.some(pattern => pattern.test(origin));
+
+    if (isAllowed) {
+      callback(null, true);
+    } else {
+      console.log('❌ CORS Blocked Origin:', origin);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
+  optionsSuccessStatus: 200 
 };
+
 app.use(cors(corsOptions));
 
 app.use(express.json());
