@@ -1,61 +1,164 @@
-import ManageQuestions from './ManageQuestions';
-import ManageFragrances from './ManageFragrances';
-
-// ... (top imports) inside the actual file
-import React from 'react';
-import { Routes, Route, Link, useNavigate } from 'react-router-dom';
-import { LogOut, BookOpen, Droplets, LayoutDashboard } from 'lucide-react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import AdminLogin from './AdminLogin';
+import ManageFragrances from './ManageFragrances';
+import ManageQuestions from './ManageQuestions';
+import PopularityChart from './PopularityChart';
+import VibeChart from './VibeChart';
+import InventoryChart from './InventoryChart';
+import GrowthChart from './GrowthChart';
+import './admin.css';
 
-const DashboardHome = () => (
-  <div className="p-8">
-    <h2 className="text-3xl font-serif mb-4 text-white">Dashboard Overview</h2>
-    <p className="text-gray-400 font-light">Welcome to the ScentStory administrative console.</p>
-  </div>
-);
+const TABS = [
+  { key: 'table', label: 'Table' },
+  { key: 'popularity', label: 'Popularity' },
+  { key: 'vibe', label: 'Vibe' },
+  { key: 'growth', label: 'Growth' },
+  { key: 'inventory', label: 'Inventory' },
+];
 
 const AdminDashboard = () => {
   const { admin, logout } = useAuth();
   const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState('table');
+  const [activeSubTab, setActiveSubTab] = useState('fragrances');
+
+  if (!admin) {
+    return <AdminLogin />;
+  }
 
   const handleLogout = () => {
     logout();
     navigate('/');
   };
 
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'table':
+        return (
+          <>
+            {/* Page Header */}
+            <div className="admin-page-header">
+              <h2 className="admin-page-title">Admin View</h2>
+              <p className="admin-page-subtitle">
+                {activeSubTab === 'fragrances' ? 'Fragrances table' : 'Questions table'}
+              </p>
+            </div>
+
+            {/* Sub-tabs + Action Buttons */}
+            <div className="admin-subtabs">
+              <div className="admin-subtab-row">
+                <button
+                  id="subtab-fragrances"
+                  className={`admin-subtab ${activeSubTab === 'fragrances' ? 'active' : ''}`}
+                  onClick={() => setActiveSubTab('fragrances')}
+                >
+                  Fragrances
+                </button>
+                <button
+                  id="subtab-questions"
+                  className={`admin-subtab ${activeSubTab === 'questions' ? 'active' : ''}`}
+                  onClick={() => setActiveSubTab('questions')}
+                >
+                  Questions
+                </button>
+              </div>
+            </div>
+
+            {/* Table content */}
+            {activeSubTab === 'fragrances' ? (
+              <ManageFragrances token={admin.token} />
+            ) : (
+              <ManageQuestions token={admin.token} />
+            )}
+          </>
+        );
+
+      case 'popularity':
+        return (
+          <>
+            <div className="admin-page-header">
+              <h2 className="admin-page-title">Admin View</h2>
+              <p className="admin-page-subtitle">Popularity</p>
+            </div>
+            <PopularityChart token={admin.token} />
+          </>
+        );
+
+      case 'vibe':
+        return (
+          <>
+            <div className="admin-page-header">
+              <h2 className="admin-page-title">Admin View</h2>
+              <p className="admin-page-subtitle">Vibe Distribution</p>
+            </div>
+            <VibeChart token={admin.token} />
+          </>
+        );
+
+      case 'growth':
+        return (
+          <>
+            <div className="admin-page-header">
+              <h2 className="admin-page-title">Admin View</h2>
+              <p className="admin-page-subtitle">Growth</p>
+            </div>
+            <GrowthChart token={admin.token} />
+          </>
+        );
+
+      case 'inventory':
+        return (
+          <>
+            <div className="admin-page-header">
+              <h2 className="admin-page-title">Admin View</h2>
+              <p className="admin-page-subtitle">Inventory</p>
+            </div>
+            <InventoryChart token={admin.token} />
+          </>
+        );
+
+      default:
+        return null;
+    }
+  };
+
   return (
-    <div className="flex flex-1 w-full bg-black border-t border-gray-900 mt-0">
-      <div className="w-64 border-r border-gray-900 p-6 flex flex-col min-h-screen">
-        <h3 className="font-serif text-xl text-white mb-8">Admin Panel</h3>
-        <nav className="flex flex-col gap-2 flex-grow">
-          <Link to="/admin" className="flex items-center gap-3 p-3 rounded-md hover:bg-gray-900 text-gray-400 hover:text-white transition-colors">
-            <LayoutDashboard size={18} />
-            <span className="text-sm">Overview</span>
-          </Link>
-          <Link to="/admin/questions" className="flex items-center gap-3 p-3 rounded-md hover:bg-gray-900 text-gray-400 hover:text-white transition-colors">
-            <BookOpen size={18} />
-            <span className="text-sm">Questions</span>
-          </Link>
-          <Link to="/admin/fragrances" className="flex items-center gap-3 p-3 rounded-md hover:bg-gray-900 text-gray-400 hover:text-white transition-colors">
-            <Droplets size={18} />
-            <span className="text-sm">Fragrances</span>
-          </Link>
-        </nav>
-        <div className="mt-auto">
-          <button onClick={handleLogout} className="flex items-center gap-3 p-3 w-full rounded-md hover:bg-red-900/30 text-gray-400 hover:text-red-400 transition-colors">
-            <LogOut size={18} />
-            <span className="text-sm">Sign Out</span>
+    <div className="admin-shell">
+      {/* Top Navigation */}
+      <nav className="admin-topnav">
+        <div className="admin-topnav-brand">
+          <h1>ScentStory</h1>
+          <span>Find your scent.</span>
+        </div>
+
+        <div className="admin-topnav-tabs">
+          {TABS.map((tab) => (
+            <button
+              key={tab.key}
+              id={`tab-${tab.key}`}
+              className={`admin-topnav-tab ${activeTab === tab.key ? 'active' : ''}`}
+              onClick={() => setActiveTab(tab.key)}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
+        <div className="admin-topnav-actions">
+          <button
+            id="admin-logout-btn"
+            className="admin-topnav-logout"
+            onClick={handleLogout}
+          >
+            Sign Out
           </button>
         </div>
-      </div>
+      </nav>
 
-      <div className="flex-1 bg-[#0a0a0a]">
-        <Routes>
-          <Route path="/" element={<DashboardHome />} />
-          <Route path="/questions" element={<ManageQuestions />} />
-          <Route path="/fragrances" element={<ManageFragrances />} />
-        </Routes>
-      </div>
+      {/* Main Content */}
+      {renderContent()}
     </div>
   );
 };

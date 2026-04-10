@@ -8,7 +8,19 @@ import FragranceList from './pages/FragranceList';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import './index.css';
 
+const isAdminDomain = window.location.hostname.startsWith('admin.');
+
 function App() {
+  // If on admin subdomain, only render the admin dashboard
+  if (isAdminDomain) {
+    return (
+      <AuthProvider>
+        <AdminDashboard />
+      </AuthProvider>
+    );
+  }
+
+  // Otherwise, render the public quiz app
   return (
     <AuthProvider>
       <QuizProvider>
@@ -19,7 +31,6 @@ function App() {
               <Route path="/quiz" element={<QuizPage />} />
               <Route path="/result" element={<ResultPage />} />
               <Route path="/fragrances" element={<FragranceList />} />
-              <Route path="/admin/*" element={<AdminDashboard />} />
             </Routes>
           </main>
         </div>
