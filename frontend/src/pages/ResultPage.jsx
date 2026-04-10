@@ -29,7 +29,7 @@ const ResultPage = () => {
           return;
         }
 
-        const response = await axios.post('http://localhost:5001/api/fragrances/get-result', {
+        const response = await axios.post('https://scentstory-backend.vercel.app/api/fragrances/get-result', {
           answers
         });
         

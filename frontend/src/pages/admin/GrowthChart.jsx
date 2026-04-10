@@ -4,7 +4,7 @@ import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from 'recharts';
 
-const API = 'http://admin.localhost:5001';
+const API = 'https://scentstory-backend.vercel.app';
 
 const GrowthChart = ({ token }) => {
   const [newUsers, setNewUsers] = useState(0);

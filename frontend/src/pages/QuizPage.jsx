@@ -13,7 +13,7 @@ const QuizPage = () => {
 
   useEffect(() => {
     // Fetch from backend
-    axios.get('http://localhost:5001/api/questions')
+    axios.get('https://scentstory-backend.vercel.app/api/questions')
       .then(res => {
         setQuestions(res.data.data || res.data);
         setLoading(false);

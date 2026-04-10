@@ -5,7 +5,7 @@ import {
   ResponsiveContainer, Tooltip,
 } from 'recharts';
 
-const API = 'http://admin.localhost:5001';
+const API = 'https://scentstory-backend.vercel.app';
 
 const VIBE_META = {
   A: { name: 'Aquatic', color: '#6c9cec' },

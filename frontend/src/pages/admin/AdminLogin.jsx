@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
 import './admin.css';
 
-const API = 'http://admin.localhost:5001';
+const API = 'https://scentstory-backend.vercel.app';
 
 const AdminLogin = () => {
   const { login } = useAuth();

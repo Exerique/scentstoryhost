@@ -4,7 +4,7 @@ import {
   PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend,
 } from 'recharts';
 
-const API = 'http://admin.localhost:5001';
+const API = 'https://scentstory-backend.vercel.app';
 
 const CATEGORY_COLORS = {
   'Aquatic': '#6c9cec',

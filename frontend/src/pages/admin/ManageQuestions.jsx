@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
-const API = 'http://admin.localhost:5001';
+const API = 'https://scentstory-backend.vercel.app';
 
 const emptyQuestion = {
   order: 1,

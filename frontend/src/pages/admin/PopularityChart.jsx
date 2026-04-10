@@ -4,7 +4,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell,
 } from 'recharts';
 
-const API = 'http://admin.localhost:5001';
+const API = 'https://scentstory-backend.vercel.app';
 
 const COLORS = ['#6c9cec', '#ec6c6c', '#a8d86c', '#c78cec', '#f0c040',
   '#5cb85c', '#e28e93', '#8884d8', '#82ca9d', '#ffc658'];
