@@ -29,7 +29,9 @@ const corsOptions = {
       /^http:\/\/localhost:5173$/,
       /^http:\/\/admin\.localhost:5173$/,
       /^http:\/\/127\.0\.0\.1:5173$/,
-      /^http:\/\/admin\.127\.0\.0\.1:5173$/
+      /^http:\/\/admin\.127\.0\.0\.1:5173$/,
+      /^https:\/\/scentstoryhost\.vercel\.app$/, // Allow production frontend
+      /^https:\/\/.*\.vercel\.app$/ // Allow Vercel preview domains
     ];
 
     const isAllowed = allowedPatterns.some(pattern => pattern.test(origin));
@@ -76,15 +78,19 @@ app.use(errorHandler);
 const PORT = process.env.PORT || 5001;
 const MONGO_URI = process.env.MONGO_URI;
 
+// Connect to Database
 mongoose
   .connect(MONGO_URI)
-  .then(() => {
-    console.log('✅ Connected to Local MongoDB (scentStory)');
-    app.listen(PORT, () => {
-      console.log(`🚀 Server is flying at http://127.0.0.1:${PORT}`);
-      console.log(`🌐 Admin Domain Detection: ACTIVE`);
-    });
-  })
-  .catch((err) => {
-    console.error('❌ Database connection failed:', err.message);
+  .then(() => console.log('✅ Connected to MongoDB (scentStory)'))
+  .catch((err) => console.error('❌ Database connection failed:', err.message));
+
+// Only listen locally if we are not in a serverless environment
+if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server is flying at http://127.0.0.1:${PORT}`);
+    console.log(`🌐 Admin Domain Detection: ACTIVE`);
   });
+}
+
+// Export for Vercel Serverless Functions
+module.exports = app;
